@@ -82,7 +82,7 @@ const calculateBestMove = function(game, playerColor, alpha=Number.NEGATIVE_INFI
 const makeMove = function() {
   // exit if the game is over
   if(game.game_over()){
-    console.log('game over');
+    alert('game over');
     return;
   }
 
@@ -98,47 +98,85 @@ const onMoveEnd = function(oldPos, newPos) {
   if(game.game_over()) {
     alert('Game Over')
   }
-  console.log(game.fen())
-}
-
-// check before pick pieces that it's white and game is not over
-const onDragStart = function(source, piece, position, orientation) {
-  if(game.game_over() || piece.search(/^b/) != -1) return false;
-}
-
-// update the board position after the piece snap for castling, en passant, pawn promotion
-const onSnapEnd = function() {
-  board.position(game.fen());
 }
 
 
-// handles what to do after player makes a move, and the computer player auto makes a move
-const onDrop = function(source, target) {
-  // check if it's legal move
-  let move = game.move({
+
+var removeGreySquares = function() {
+  $('#board .square-55d63').css('background', '');
+};
+
+var greySquare = function(square) {
+  var squareEl = $('#board .square-' + square);
+
+  var background = '#a9a9a9';
+  if (squareEl.hasClass('black-3c85d') === true) {
+    background = '#696969';
+  }
+
+  squareEl.css('background', background);
+};
+
+var onDragStart = function (source, piece, position, orientation) {
+    if (game.in_checkmate() === true || game.in_draw() === true || piece.search(/^b/) !== -1) {
+        return false;
+    }
+};
+
+var onDrop = function(source, target) {
+  removeGreySquares();
+
+  // see if the move is legal
+  var move = game.move({
     from: source,
     to: target,
-    promotion: 'q'
-  })
+    promotion: 'q' // NOTE: always promote to a queen for example simplicity
+  });
 
-  // if move illegal, snapback
-  if(move === null) return 'snapback';
+  // illegal move
+  if (move === null) return 'snapback';
 
-  console.log(move)
-  //make move for black
+  // make move for black
   window.setTimeout(function() {
     makeMove();
   }, 250);
-}
+};
 
-// board configuration
-const cfg = {
+var onMouseoverSquare = function(square, piece) {
+  // get list of possible moves for this square
+  var moves = game.moves({
+    square: square,
+    verbose: true
+  });
+
+  // exit if there are no moves available for this square
+  if (moves.length === 0) return;
+
+  // highlight the square they moused over
+  greySquare(square);
+
+  // highlight the possible squares for this piece
+  for (var i = 0; i < moves.length; i++) {
+    greySquare(moves[i].to);
+  }
+};
+
+var onMouseoutSquare = function(square, piece) {
+  removeGreySquares();
+};
+
+var onSnapEnd = function() {
+  board.position(game.fen());
+};
+
+var cfg = {
   draggable: true,
   position: 'start',
   onMoveEnd: onMoveEnd,
   onDragStart: onDragStart,
   onDrop: onDrop,
+  onMouseoutSquare: onMouseoutSquare,
+  onMouseoverSquare: onMouseoverSquare,
   onSnapEnd: onSnapEnd
-}
-
-let board = ChessBoard('board', cfg);
+};
+board = ChessBoard('board', cfg);
