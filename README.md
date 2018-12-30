@@ -21,6 +21,12 @@ Include logo/demo screenshot etc.
 
 ![chess1](https://user-images.githubusercontent.com/38970716/50548479-36875580-0c1b-11e9-8f2b-5dbe6fbd4ba5.gif)
 
+- The search depth is default to 3, that means for every move the computer is going to loop through the board three times in a recursive fashion to foresee three steps ahead and make the best move. Testing has shown that depth beyond 3 will make the calculation extremely slow due to the process is exponential in nature
+
+![peek 2018-12-30 09-25](https://user-images.githubusercontent.com/38970716/50548637-13aa7080-0c1e-11e9-86b7-5a06ee8b78cd.gif)
+
+- other features including applying Alpha Beta Pruning technique to optimize the runtime of the algorithm. As well as using JQuery and Css to style the potential moves of a piece when the cursor hover over it. 
+
 ## Code Example
 Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
 
