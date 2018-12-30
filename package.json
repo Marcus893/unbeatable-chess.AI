@@ -1,0 +1,14 @@
+{
+  "name": "unbeatable-chess.ai",
+  "version": "1.0.0",
+  "description": "minimax artificial intelligence algorithm to make the computer player unbeatable",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
