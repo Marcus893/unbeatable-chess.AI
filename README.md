@@ -22,7 +22,7 @@ A chess game built with Minimax algorithm and Alpha Beta Pruning optimization
 
 ![peek 2018-12-30 09-25](https://user-images.githubusercontent.com/38970716/50548637-13aa7080-0c1e-11e9-86b7-5a06ee8b78cd.gif)
 
-- other features including applying Alpha Beta Pruning technique to optimize the runtime of the algorithm. As well as using JQuery and Css to style the potential moves of a piece when the cursor hover over it. 
+- Other features including applying Alpha Beta Pruning technique to optimize the runtime of the algorithm. As well as using JQuery and Css to style the potential moves of a piece when the cursor hover over it. 
 
 ## Code Showcase
 
