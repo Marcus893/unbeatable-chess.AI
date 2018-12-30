@@ -10,10 +10,10 @@ Include logo/demo screenshot etc.
 
 ## Tech/framework used
 <b>Built with</b>
-- [JavaScript]
-- [Node.js]
-- [JQuery]
-- [HTML/CSS]
+- JavaScript
+- Node.js
+- JQuery
+- HTML/CSS
 
 ## Features
 
