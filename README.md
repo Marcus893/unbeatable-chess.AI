@@ -4,9 +4,6 @@ Play it live here!
 
 ## Project Overview
 A chess game built with Minimax algorithm and Alpha Beta Pruning optimization
- 
-## Screenshots
-Include logo/demo screenshot etc.
 
 ## Tech/framework used
 
@@ -27,18 +24,84 @@ Include logo/demo screenshot etc.
 
 - other features including applying Alpha Beta Pruning technique to optimize the runtime of the algorithm. As well as using JQuery and Css to style the potential moves of a piece when the cursor hover over it. 
 
-## Code Example
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
+## Code Showcase
 
-## Installation
-Provide step by step series of examples and explanations about how to get a development env running.
+- Main logic of the game
 
-## API Reference
+```Javascript 
+// calculate the best move using Minimax with Alpha Beta pruning
+const calculateBestMove = function(game, playerColor, alpha=Number.NEGATIVE_INFINITY, beta=Number.POSITIVE_INFINITY, isMaximizing=true, depth=3) {
+  // base case
+  if(depth == 0) {
+    val = evaluateBoard(game.board(), playerColor);
+    return [val, null]
+  }
 
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
+  // recursive case to search possible moves
+  let bestMove = null;
+  let possibleMoves = game.moves();
+  // sort the order randomly
+  possibleMoves.sort(() => Math.random() - 0.5);
+  // set a default value for best move's value
+  let bestMoveVal = isMaximizing ? Number.NEGATIVE_INFINITY : Number.POSITIVE_INFINITY;
 
-## Tests
-Describe and show how to run the tests with code examples.
+  // search through all possible moves
+  for(let i = 0; i < possibleMoves.length; i++) {
+    let move = possibleMoves[i];
+    // make the move but undo it before exiting
+    game.move(move);
+    // recursively get the value from this move
+    val = calculateBestMove(game, playerColor, alpha, beta, !isMaximizing, depth-1)[0];
+    // log the value of this move
+    console.log(isMaximizing ? 'Max: ' : 'Min: ', depth, move, val, bestMove, bestMoveVal);
 
-## How to use?
-If people like your project they’ll want to learn how they can use it. To do so include step by step guide to use your project.
+    if(isMaximizing) {
+      // search for move that maximize value
+      if(val > bestMoveVal) {
+        bestMoveVal = val;
+        bestMove = move;
+      }
+      alpha = Math.max(alpha, val)
+    } else {
+      // search for the move that minimize value
+      if(val < bestMoveVal) {
+        bestMoveVal = val;
+        bestMove = move;
+      }
+      beta = Math.min(beta, val);
+    }
+    // undo this move and keep searching
+    game.undo();
+    // check for alpha beta pruning
+    if(beta <= alpha) {
+      console.log('Prune: ', alpha, beta);
+      break;
+    }
+  }
+  return [bestMoveVal, bestMove || possibleMoves[0]]
+}
+```
+
+- JQuery to create special mouseover effect
+
+```Javascript
+var removeGreySquares = function() {
+  $('#board .square-55d63').css('background', '');
+};
+
+var greySquare = function(square) {
+  var squareEl = $('#board .square-' + square);
+
+  var background = '#a9a9a9';
+  if (squareEl.hasClass('black-3c85d') === true) {
+    background = '#696969';
+  }
+
+  squareEl.css('background', background);
+};
+```
+
+
+## Environment
+
+Server side built with Express, deployed to Heroku
