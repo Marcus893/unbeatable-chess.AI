@@ -1,4 +1,20 @@
+html {
+  height: 100%;
+}
+
 #board {
   margin: 0 auto;
   width: 800px;
+}
+
+.title {
+  text-align: center;
+  font-size: 48px;
+}
+
+.body {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-image: url('https://png.pngtree.com/thumb_back/fh260/back_pic/03/51/29/845790efb6c6631.jpg')
 }
