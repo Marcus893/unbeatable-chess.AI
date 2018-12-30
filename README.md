@@ -1,6 +1,6 @@
 # unbeatable-chess.AI
 
-Play it live here!(https://chess1-ai.herokuapp.com/)
+[Play it live here!](https://chess1-ai.herokuapp.com/)
 
 ## Project Overview
 A chess game built with Minimax algorithm and Alpha Beta Pruning optimization
