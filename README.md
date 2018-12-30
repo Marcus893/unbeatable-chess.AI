@@ -9,15 +9,17 @@ A chess game built with Minimax algorithm and Alpha Beta Pruning optimization
 Include logo/demo screenshot etc.
 
 ## Tech/framework used
-<b>Built with</b>
+
 - JavaScript
 - Node.js
 - JQuery
 - HTML/CSS
 
 ## Features
-- Basic logic is to direct the computer player to achieve maximum weights for itself and minimizes the total weights of the opponent by using Minimax algorithm. For every move the computer is going to loop through the entire board, calculate the weights for every potential move every piece can achieve to pick the move that maximizes it's total weights; in the mean time, do the same calculation for the opponent but pick the move that's going to have the maximum negative impact for him.<br />
-![chess1](https://user-images.githubusercontent.com/38970716/50548479-36875580-0c1b-11e9-8f2b-5dbe6fbd4ba5.gif){:height="50%" width="50%"}
+
+- Basic logic is to direct the computer player to achieve maximum weights for itself and minimizes the total weights of the opponent by using Minimax algorithm. For every move the computer is going to loop through the entire board, calculate the weights for every potential move every piece can achieve to pick the move that maximizes it's total weights(ex. get a piece into a position that threatens an opponent's piece without endangering itself); in the mean time, do the same calculation for the opponent but pick the move that's going to have the maximum negative impact for him(ex. capture an opponent's piece).
+
+![chess1](https://user-images.githubusercontent.com/38970716/50548479-36875580-0c1b-11e9-8f2b-5dbe6fbd4ba5.gif)
 
 ## Code Example
 Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
